@@ -1,0 +1,99 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #aaaaaa; */
+    background-image: url("https://preview.redd.it/qq9rnxx4sg971.png?auto=webp&s=44fa08f8f31cb5f62683a8eba8f67bdb279ebfca");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease;
+  }
+  body:hover
+  {
+   backdrop-filter: blur(5px); 
+  }
+  
+  .login-container {
+    /* background-color: #ffffff; */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.295);
+    padding: 20px;
+    width: 350px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.356);
+    backdrop-filter: blur(5px);
+    border-radius: 40px;
+    transition: backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+  }
+  .login-container:hover {
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.555);
+  }
+  
+  .login-box h2 {
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #fff;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    color: #fff;
+    width:93%;
+    padding: 10px;
+    border: 1px solid #cccccc46;
+    border-radius: 50px;
+    background-color: rgba(34, 34, 34, 0.603);
+    transition: all 0.3s ease;
+  }
+  input[type="password"]:focus, input[type="text"]:focus {
+    color: #000;
+    background-color: #fff;
+  }
+  
+  .login-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  video{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+  }
+
+  img:hover{
+    filter: blur(5px);
+  }
+  

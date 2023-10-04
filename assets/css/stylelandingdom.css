@@ -1,0 +1,166 @@
+:root {
+    --putih: #fff;
+    --hitam: #000;
+    --warnabg: #29292960;
+    --warnaharga: #ff2222;
+    --ukuran20: 20px;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://images.pexels.com/photos/2341290/pexels-photo-2341290.jpeg?cs=srgb&dl=pexels-henry-%26-co-2341290.jpg&fm=jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+.produk-etalase {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--ukuran20);
+    padding: var(--ukuran20);
+}
+
+.produk-box {
+    background-color: #29292960;
+    border: 1px solid #ffffff;
+    border-radius: 10%;
+    padding: var(--ukuran20);
+    width: 300px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.411);
+    backdrop-filter: blur(10px);
+    transition: all ease-in-out 0.3s;
+    color: #fff;
+}
+
+.carousel-item:hover {
+    background-color: #ffffff;
+    color: #000;
+}
+
+.produk-gambar {
+    width: 100%;
+    max-height: 170px;
+    object-fit: cover;
+    transition: all ease-in-out 0.3s;
+    border-radius: 10%;
+    /* background-color: #fff; */
+}
+
+.produk-gambar:hover {
+    /* object-fit:contain; */
+    border-radius: 10%;
+    transform: scale(1.1);
+}
+
+.produk-nama {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: var(--putih);
+    transition: all ease-in-out 0.3s;
+}
+
+.produk-deskripsi {
+    color: var(--putih);
+}
+
+.produk-harga {
+    font-weight: bold;
+    color: rgb(169, 231, 255);
+    transition: all ease-in-out 0.3s;
+}
+
+.carousel-item:hover .produk-nama {
+    color: var(--hitam);
+}
+
+.carousel-item:hover .produk-harga {
+    color: var(--warnaharga);
+}
+
+.produk-beli {
+    text-decoration: none;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px var(--ukuran20);
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    transition: all ease-in-out 0.3s;
+}
+
+.produk-beli:hover {
+    background-color: #ff5722;
+}
+
+.linkurl {
+    color: var(--hitam);
+    text-decoration: none;
+}
+
+.carousel-container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 300px;
+    margin-right: 20px;
+    background-color: #29292960;
+    border: 1px solid #ffffff;
+    border-radius: 10%;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.411);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    transition: all ease-in-out 0.3s;
+    margin-right: 2.2%;
+    margin-bottom: 3px;
+    
+}
+
+.carousel-item img {
+    max-width: 100%;
+    max-height: 170px;
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-controls button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.carousel-controls button:hover {
+    background-color: #ff5722;
+}

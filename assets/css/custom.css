@@ -1,0 +1,12 @@
+.sidebar {
+    position: fixed;
+    height: 100%;
+    background-color: #343a40;
+}
+
+.main-footer {
+    position: fixed;
+    width: 100%;
+    background-color: #343a40;
+    color: #fff;
+}
