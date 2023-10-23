@@ -1,6 +1,6 @@
 <?php
     $hostname = "127.0.0.1";
-    $database = "online_shop";
+    $database = "pos_shop";
     $username = "root";
     $password = '';
 
@@ -9,5 +9,11 @@
         die("Tidak terkoneksi". mysqli_connect_error());
     }
     echo "Berhasil terkoneksi.";
-    mysqli_close($conn);
+    $sql = "SELECT * FROM products";
+    $result = $conn->query($sql);
+    if (!$result) {
+        die("Query failed: " . $conn->error);
+    }
+    
+    // mysqli_close($conn);
 ?>
