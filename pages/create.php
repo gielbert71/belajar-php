@@ -1,7 +1,7 @@
 <?php
 include_once("koneksi.php");
 
-$kategori = "SELECT id FROM product_categories";
+$kategori = "SELECT * FROM product_categories";
 $result_kategori = mysqli_query($conn, $kategori);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <select class="form-select" name="category_id" id="category_id">
                                 <?php
                                 foreach ($result_kategori as $category) {
-                                    echo "<option value='" . $category['id'] . "'>" . $category['id'] . "</option>";
+                                    echo "<option value='" . $category['id'] . "'>" . $category['category_name'] . "</option>";
                                 }
                                 ?>
                             </select>
