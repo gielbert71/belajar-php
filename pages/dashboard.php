@@ -1,15 +1,43 @@
+<?php
+include_once("koneksi.php");
+
+$queryproduk = "SELECT COUNT(*) as jumlahproduk FROM products;";
+$querycustomer = "SELECT COUNT(*) as jumlahcustomer FROM customers";
+$queryvendor = "SELECT COUNT(*) as jumlahvendor FROM vendors";
+
+$dataproduk = mysqli_query($conn, $queryproduk);
+$datacustomer = mysqli_query($conn, $querycustomer);
+$datavendor = mysqli_query($conn, $queryvendor);
+$rowproduk = mysqli_fetch_assoc($dataproduk);
+$rowcustomer = mysqli_fetch_assoc($datacustomer);
+$rowvendor = mysqli_fetch_assoc($datavendor);
+$jumlahproduk = $rowproduk['jumlahproduk'];
+$jumlahcustomer = $rowcustomer['jumlahcustomer'];
+$jumlahvendor = $rowvendor['jumlahvendor'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard & Array</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../assets/bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="path-to-adminlte/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../assets/adminlte/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../assets/css/stylespro.css">
-    <style>
-        .fixed-top {
+    <link rel="stylesheet" href="../assets/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../assets/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="../assets/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/adminlte/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="../assets/adminlte/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../assets/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="../assets/adminlte/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../assets/adminlte/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <style>    
+    .fixed-top {
             z-index: 1030 !important;
         }
 
@@ -50,74 +78,52 @@
             <nav class="navbar navbar-expand-lg bg-dark position-fixed" style="width: 100%; margin-top: -60px;">
                 <a class="navbar-brand" href="product.html">Product</a>
             </nav>
-            <h1 style="text-align: center;"><a href="../index.html" class="linkurl">Product</a></h1>
-            <div class="produk-etalase">
-                <?php
-                $produk = array(
-                    array(
-                        "gambar" => "../assets/images/products/cbr.webp",
-                        "nama" => "Honda CBR1000RR 2017",
-                        "deskripsi" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "harga" => "Rp700.000.000"
-                    ),
-                    array(
-                        "gambar" => "../assets/images/products/r1m.jpg",
-                        "nama" => "Yamaha YZF-R1M 2022",
-                        "deskripsi" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "harga" => "Rp812.000.000"
-                    ),
-                    array(
-                        "gambar" => "../assets/images/products/v4r.webp",
-                        "nama" => "Ducati V4R",
-                        "deskripsi" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "harga" => "Rp2.400.000.000"
-                    ),
-                    array(
-                        "gambar" => "../assets/images/products/zx10r.png",
-                        "nama" => "Kawasaki Ninja ZX-10R",
-                        "deskripsi" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "harga" => "Rp492.000.000"
-                    ),
-                    array(
-                        "gambar" => "../assets/images/products/nsx.jpg",
-                        "nama" => "Honda NSX Type-R",
-                        "deskripsi" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "harga" => "Rp6.193.000.000"
-                    ),
-                    array(
-                        "gambar" => "../assets/images/products/supra.webp",
-                        "nama" => "Toyota Supra A80",
-                        "deskripsi" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "harga" => "Rp2.100.000.000"
-                    ),
-                    array(
-                        "gambar" => "../assets/images/products/skyline.png",
-                        "nama" => "Nissan Skyline R34",
-                        "deskripsi" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "harga" => "Rp2.400.000.000"
-                    ),
-                    array(
-                        "gambar" => "../assets/images/products/rx7.webp",
-                        "nama" => "Mazda RX7 FD3S",
-                        "deskripsi" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                        "harga" => "Rp2.100.000.000"
-                    )
-                );
-
-                foreach ($produk as $item) {
-                    echo '<div class="produk-box">';
-                    echo '<img class="produk-gambar" src="' . $item["gambar"] . '" alt="' . $item["nama"] . '">';
-                    echo '<h2 class="produk-nama">' . $item["nama"] . '</h2>';
-                    echo '<p>' . $item["deskripsi"] . '</p>';
-                    echo '<p class="produk-harga">' . $item["harga"] . '</p><br>';
-                    echo '<center>';
-                    echo '<a href="#" type="submit" class="produk-beli">Pesan</a>';
-                    echo '</center>';
-                    echo '<br>';
-                    echo '</div>';
-                }
-                ?>
+            <h1 style="text-align: center;">Statistics</h1>
+            <br>
+            <div class="row" style="margin-left: 20px;">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        
+                        <div class="inner">
+                            <h3><?php echo $jumlahproduk ?></h3>
+                            <p>Products</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="crud-products.php" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-success">
+                        
+                        <div class="inner">
+                            <h3><?php echo $jumlahcustomer ?></h3>
+                            <p>Customers</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-warning">
+                        
+                        <div class="inner">
+                            <h3><?php echo $jumlahvendor ?></h3>
+                            <p>Vendors</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
             </div>
+            <!-- <div class="produk-etalase">
+            </div> -->
         </div>
         <script src="../assets/adminlte/plugins/jquery/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

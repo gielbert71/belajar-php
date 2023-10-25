@@ -24,7 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if (isset($_GET['id'])) {
     $product_id = $_GET['id'];
-    $fetch_query = "SELECT * FROM products WHERE id = $product_id";
+    $fetch_query = "SELECT products.*, product_categories.category_name FROM products
+                   INNER JOIN product_categories ON products.category_id = product_categories.id
+                   WHERE products.id = $product_id";
+
     $product = mysqli_query($conn, $fetch_query);
 
     if (mysqli_num_rows($product) == 1) {
@@ -34,6 +37,7 @@ if (isset($_GET['id'])) {
         $product_code = $row["product_code"];
         $description = $row["description"];
         $price = $row["price"];
+        $category_name = $row["category_name"];
     } else {
         echo "Product not found.";
     }
