@@ -10,7 +10,7 @@ class Database {
         }
     }
 
-    public function getConn() {
+    public function getConnection() {
         return $this->conn;
     }
 }

@@ -1,15 +1,17 @@
 <?php
-include("Database.php");
-include("User.php");
+include('Database.php');
+include('RegistUser.php');
 
 $db = new Database();
-$user = new User($db);
+$userRegistration = new RegistUser($db);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = $_POST["username"];
+    $name = $_POST["nama"];
+    $no_hp = $_POST["no_hp"];
+    $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $pesanerror = $user->login($username, $password);
+    $pesanerror = $userRegistration->registerUser($name, $no_hp, $email, $password);
 }
 ?>
 
@@ -18,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
@@ -29,21 +31,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <source src="../assets/videos/video1.mp4" type="video/mp4" /><br>
                 Browsermu tidak mendukung tag ini, aowkoawkoawk.
             </video>
-            <h2 style="color: white;">Login</h2>
-            <form action="login.php" method="post">
+            <h2 style="color: white;">Register</h2>
+            <form action="register.php" method="post">
                 <div class="input-container">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="nama">Nama</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="input-container">
+                    <label for="no_hp">Nomor HP</label>
+                    <input type="text" id="no_hp" name="no_hp" required>
                 </div>
                 <div class="input-container">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="login-button">Login</button>
+                <button type="submit" class="login-button">Register</button>
             </form><br>
             <?php
             if (isset($pesanerror)){
-                echo '<p style="color: white;">'.$pesanerror.'</p>';
+                echo '<p>'.$pesanerror.'</p>';
             }
             ?>
             <img src="../assets/images/image1.png" alt="gambar">

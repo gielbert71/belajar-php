@@ -19,6 +19,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $product_name = $_POST["product_name"];
+    $category_id = $_POST["category_id"];
+    $product_code = $_POST["product_code"];
+    $description = $_POST["description"];
+    $price = $_POST["price"];
+
+    $files_arr = array();
+
+    $files = array_filter($_FILES['upload']['name']); //Use something similar before processing files.
+    // Count the number of uploaded files in array
+    $total_count = count($_FILES['upload']['name']);
+    // Loop through every file
+    for( $i=0 ; $i < $total_count ; $i++ ) {
+      //The temp file path is obtained
+      $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
+      //A file path needs to be present
+      if ($tmpFilePath != ""){
+          //Setup our new file path
+          $newFilePath = "uploads/" . $_FILES['upload']['name'][$i];
+          //File is uploaded to temp dir
+          if(move_uploaded_file($tmpFilePath, $newFilePath)) {           
+
+              //add new file path to array
+              $files_arr[] = $newFilePath;
+
+          }
+      }
+    }
+
+    //convert files array to json format
+    $files_arr = json_encode($files_arr);
+
+    $insert_query = "INSERT INTO products (product_name, category_id, product_code, description, price, image) VALUES ('$product_name', '$category_id', '$product_code', '$description', '$price', '$files_arr')";
+    if (mysqli_query($conn, $insert_query)) {
+        header("Location: crud-products.php");
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="produk-etalase">
                 <div class="container">
                     <h1>Create a New Product</h1>
-                    <form method="post" action="create.php">
+                    <form method="post" action="create.php" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="product_name">Nama produk:</label>
                             <input type="text" class="form-control" id="product_name" name="product_name" required>
@@ -103,9 +145,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-group">
                             <label for="price">Harga:</label>
                             <input type="number" class="form-control" id="price" name="price" required>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="image"></label>
+                            <input type="file" name="upload[]">
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary">Create Product</button>
+                        <button type="submit" class="btn btn-primary" value="Upload">Create Product</button>
                     </form>
                 </div>
             </div>
