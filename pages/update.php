@@ -1,5 +1,5 @@
 <?php
-include_once("koneksi.php");
+include_once("../koneksi.php");
 
 $kategori = "SELECT * FROM product_categories";
 $result_kategori = mysqli_query($conn, $kategori);

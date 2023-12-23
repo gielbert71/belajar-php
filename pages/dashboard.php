@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once("koneksi.php");
+require_once("../koneksi.php");
 
 if (!isset($_SESSION['user_authenticated']) || $_SESSION['user_authenticated'] !== true) {
     header("Location: login.php");

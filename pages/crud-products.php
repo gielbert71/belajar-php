@@ -5,7 +5,7 @@ include_once("products.php");
 $db = new Database();
 $product = new Product($db);
 
-$items = 2;
+$items = 10;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 $products = $product->getProducts($items, $page);
@@ -202,13 +202,13 @@ function tgl_indo($tanggal)
         </div>
         <div class="produk-etalase">
             <?php
-            include_once('koneksi.php');
+            include_once('../koneksi.php');
             include_once('products.php');
 
             $db = new Database();
             $product = new Product($db);
 
-            $result = $product->getProducts($itemsPerPage, $page);
+            $result = $product->getProducts($items, $page);
 
             $categories = array();
 
